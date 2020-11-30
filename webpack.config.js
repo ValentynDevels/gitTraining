@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
 module.exports = {
-  entry: __dirname + "/src/index.js", // webpack entry point. Module to start building dependency graph
+  entry: [__dirname + "/src/index.js", __dirname + "/src/style.scss"], // webpack entry point. Module to start building dependency graph
   output: {
     path: __dirname + '/dist', // Folder to store generated bundle
     filename: 'bundle.js',  // Name of generated bundle after build
@@ -10,14 +10,27 @@ module.exports = {
       rules: [ 
         {
             test: /\.(sass|scss)$/,
-            use: [{
-                loader: "style-loader" // creates style nodes from JS strings
-            }, {
-                loader: "css-loader" // translates CSS into CommonJS
-            }, {
-                loader: "sass-loader" // compiles Sass to CSS
-            }]
-          }
+            use: [
+                {
+                  loader: 'file-loader',
+                  options: {
+                    name: '/css/[name].css'
+                  }
+                 },
+                 {
+                   loader: 'extract-loader'
+                 },
+                 {
+                   loader: 'css-loader?-url'
+                 },
+                 {
+                   loader: 'postcss-loader'
+                 },
+                 {
+                   loader: 'sass-loader'
+                 }
+               ],
+          },
       ]
   },
   plugins: [  // Array of plugins to apply to build chunk
@@ -27,7 +40,7 @@ module.exports = {
       })
   ],
   devServer: {  // configuration for webpack-dev-server
-      contentBase: './html',  //source of static assets
+      contentBase: './dist',  //source of static assets
       port: 7700, // port to run dev-server
   } 
 };
