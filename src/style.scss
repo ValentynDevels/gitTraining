@@ -37,8 +37,8 @@ body {
   height: 120px;
   border-radius: 77% 23% 49% 51% / 53% 22% 78% 47% ;  
   position: absolute;
-  top: 50px;
-  left: 430px;
+  top: 43px;
+  left: 400px;
   transform: rotate(45deg)
   }
 
@@ -52,7 +52,51 @@ body {
     left: 380px;
     transform: rotate(45deg)
   }
+  .dick_wrap{
+    position: relative;
+    width:600px;
+    height: 450px;
+    margin: 100px;
+    transform: rotate(15deg);
+  }
 }
+
+.dick_wrap{
+  animation: move 5s infinite;
+  
+}
+
+
+@keyframes moveto{
+  from{
+    top: 100%;
+    right: 20%;  
+  }
+
+  to{
+    transform: rotate(0deg);
+    top: 0;
+    right: -100%;
+  }
+
+}
+
+@keyframes move{
+  
+  from{
+    transform: rotate(0deg);
+    top: 0;
+    right: -100%;
+  }
+
+  to{
+    transform: rotate(1560deg);
+    top: 100%;
+    right: 20%; 
+  }
+
+}
+
 
 
 
