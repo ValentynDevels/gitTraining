@@ -1,5 +1,5 @@
 # gitTraining
 #This is readme file
 #Add your branch description:
-AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+Big blck pennis 
 # validol -> html
