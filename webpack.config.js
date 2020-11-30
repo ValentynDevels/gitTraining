@@ -1,4 +1,6 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
+const webpack = require('webpack')
+const path = require('path');
 module.exports = {
   entry: [__dirname + "/src/index.js", __dirname + "/src/style.scss"], // webpack entry point. Module to start building dependency graph
   output: {
@@ -37,10 +39,15 @@ module.exports = {
       new HtmlWebpackPlugin({
           template: __dirname + "/html/index.html",
           inject: 'body'
-      })
+      }),
+      new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {  // configuration for webpack-dev-server
-      contentBase: './dist',  //source of static assets
-      port: 7700, // port to run dev-server
+    historyApiFallback: true,
+    contentBase: path.resolve(__dirname, './dist'),
+    open: true,
+    compress: true,
+    hot: true,
+    port: 8080,
   } 
 };
