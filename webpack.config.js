@@ -1,6 +1,7 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin'); // Require  html-webpack-plugin plugin
 const webpack = require('webpack')
 const path = require('path');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 module.exports = {
   entry: [__dirname + "/src/index.js", __dirname + "/src/style.scss"], // webpack entry point. Module to start building dependency graph
   output: {
@@ -10,6 +11,10 @@ module.exports = {
   },
   module: {  // where we defined file patterns and their loaders
       rules: [ 
+        {
+            test: /\.css$/i,
+            use: ['style-loader', 'css-loader'],
+          },
         {
             test: /\.(sass|scss)$/,
             use: [
@@ -36,11 +41,12 @@ module.exports = {
       ]
   },
   plugins: [  // Array of plugins to apply to build chunk
-      new HtmlWebpackPlugin({
-          template: __dirname + "/html/index.html",
-          inject: 'body'
-      }),
-      new webpack.HotModuleReplacementPlugin()
+        new CleanWebpackPlugin(),
+        new HtmlWebpackPlugin({
+            template: __dirname + "/html/index.html",
+            inject: 'body'
+        }),
+        new webpack.HotModuleReplacementPlugin()
   ],
   devServer: {  // configuration for webpack-dev-server
     historyApiFallback: true,
